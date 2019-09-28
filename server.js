@@ -9,7 +9,7 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 // Require all models
-// const db = require("./models");
+const db = require("./models/Article");
 
 const PORT = 3000;
 
@@ -27,9 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-
-mongoose.connect(MONGODB_URI,{ useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
@@ -67,6 +65,6 @@ app.get("/scrape", function(req, res) {
     });
   });
   app.listen(PORT, function() {
-    console.log("App running on port " + PORT + "!");
+    console.log("App running on port http://localhost:" + PORT);
   });
   
